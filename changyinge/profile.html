@@ -2,7 +2,7 @@
 <html lang="en" class="app">
 <head>  
   <meta charset="utf-8" />
-  <title>Musik | Web Application</title>
+  <title>畅音阁</title>
   <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="js/jPlayer/jplayer.flat.css" type="text/css" />
@@ -48,7 +48,7 @@
             <span class="input-group-btn">
               <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
             </span>
-            <input type="text" class="form-control input-sm no-border rounded" placeholder="搜索歌曲，专辑...">
+            <input type="text" class="form-control input-sm no-border rounded" placeholder="搜索歌名，歌手...">
           </div>
         </div>
       </form>
@@ -56,23 +56,20 @@
         <ul class="nav navbar-nav m-n hidden-xs nav-user user">
          
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown" >
               <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-                <img src="images/a0.png" alt="...">
+                <img src="images/a0.png" alt="..." id="userImg">
               </span>
-              John.Smith <b class="caret"></b>
+              <span id="userName">John.Smith</span> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu animated fadeInRight">            
               <li>
                 <span class="arrow top"></span>
-                <a href="#" class="specialFont">设置</a>
-              </li>
-              <li>
-                <a href="profile.html" class="specialFont">我的数据</a>
+                <a href="#" id="settings">设置</a>
               </li>
               <li class="divider"></li>
               <li>
-                <a href="modal.lockme.html" data-toggle="ajaxModal"  class="specialFont">退出登录</a>
+                <a href="#" id="logout">退出登录</a>
               </li>
             </ul>
           </li>
@@ -140,6 +137,30 @@
                         <span class="font-bold">爵士</span>
                       </a>
                     </li>
+                  </ul>
+                  <ul class="nav bg clearfix">
+                    <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                      我的
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="icon-cloud-download"></i>
+                        <span class="font-bold">下载</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="genres.html">
+                        <i class="fa fa-heart-o"></i>
+                        <span class="font-bold">收藏</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="listen.html">
+                        <i class="fa fa-comment-o"></i>
+                        <span class="font-bold">评论</span>
+                      </a>
+                    </li>
+                    <li class="m-b hidden-nav-xs"></li>
                   </ul>
                 </nav>
                 <!-- / nav -->
@@ -360,6 +381,7 @@
   <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="js/jPlayer/add-on/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="js/jPlayer/demo.js"></script>
+  <script type="text/javascript" src="js/logout.js"></script>
 <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>
 </html>

@@ -2,23 +2,67 @@
 <html lang="en" class="app">
 <head>  
   <meta charset="utf-8" />
-  <title>Musik | Web Application</title>
+  <title>畅音阁</title>
   <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.4">
+  <meta name="MobileOptimized" content="240">
   <link rel="stylesheet" href="js/jPlayer/jplayer.flat.css" type="text/css" />
   <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
   <link rel="stylesheet" href="css/animate.css" type="text/css" />
   <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
   <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" />
   <link rel="stylesheet" href="css/font.css" type="text/css" />
-  <link rel="stylesheet" href="css/app.css" type="text/css" />  
+  <link rel="stylesheet" href="css/app.css" type="text/css" /> 
+  <!-- <link rel="stylesheet" type="text/css" href="css/lrc.css">  -->
     <!--[if lt IE 9]>
     <script src="js/ie/html5shiv.js"></script>
     <script src="js/ie/respond.min.js"></script>
     <script src="js/ie/excanvas.js"></script>
   <![endif]-->
+  <script type="text/javascript" src="js/lrcPlayer/jquery.js"></script>
+  <script type="text/javascript" src="js/lrcPlayer/jquery.jplayer.js"></script>
+  <script type="text/javascript" src="js/lrcPlayer/lrc.js"></script>
+  <script type="text/javascript" src="js/lrcPlayer/lrcPlayer.js"></script>
+  <style type="text/css">
+    .content {width: 700px;height:200px;overflow:hidden;padding:10px;}
+    #lrc_list{margin:10px auto;}
+    #lrc_list li{font:normal 14px/2.1 'microsoft yahei';text-align:center;color:#000;list-style: none}
+    #lrc_list li.hover {color:red;font-weight:bold;}
+  </style>
 </head>
 <body class="">
+  <textarea id="lrc_content" name="textfield" cols="70" rows="10" style="display:none;"> 
+  [00:03.00]洋葱
+  [00:06.00]演唱：平安
+  [00:09.00]
+  [00:11.38]如果你眼神能够为我片刻的降临
+  [00:21.23]如果你能听到心碎的声音
+  [00:28.88]盘底的洋葱像我永远是配角戏
+  [00:35.74]偷偷的看着你偷偷的隐藏着自己
+  [00:43.48]
+  [00:44.90]如果你愿意一层一层
+  [00:48.46]一层的剥开我的心
+  [00:52.66]你会发现你会讶异
+  [00:56.40]你是我最压抑最深处的秘密
+  [01:00.26]如果你愿意一层一层
+  [01:03.69]一层的剥开我的心
+  [01:07.76]你会鼻酸你会流泪
+  [01:11.60]只要你能听到我看到我的全心全意
+  [01:18.30]
+  [01:19.11]如果你愿意一层一层
+  [01:22.57]一层的剥开我的心
+  [01:26.66]你会发现你会讶异
+  [01:30.41]你是我最压抑最深处的秘密
+  [01:34.48]如果你愿意一层一层
+  [01:37.58]一层的剥开我的心
+  [01:41.51]你会鼻酸你会流泪
+  [01:45.15]只要你能听到我看到我的全心全意
+  [01:53.55]
+  [01:55.65]你会鼻酸你会流泪
+  [01:59.84]只要你能听到我看到我的全心全意
+  </textarea>
   <section class="vbox">
     <header class="bg-black lter header header-md navbar navbar-fixed-top-xs">
       <div class="navbar-header aside bg-success nav-xs">
@@ -47,7 +91,7 @@
             <span class="input-group-btn">
               <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
             </span>
-            <input type="text" class="form-control input-sm no-border rounded" placeholder="搜索歌曲，专辑...">
+            <input type="text" class="form-control input-sm no-border rounded" placeholder="搜索歌名，歌手...">
           </div>
         </div>
       </form>
@@ -55,23 +99,20 @@
         <ul class="nav navbar-nav m-n hidden-xs nav-user user">
           
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown" >
               <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-                <img src="images/a0.png" alt="...">
+                <img src="images/a0.png" alt="..." id="userImg">
               </span>
-              John.Smith <b class="caret"></b>
+              <span id="userName">John.Smith</span> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu animated fadeInRight">            
               <li>
                 <span class="arrow top"></span>
-                <a href="#" class="specialFont">设置</a>
-              </li>
-              <li>
-                <a href="profile.html" class="specialFont">我的数据</a>
+                <a href="#" id="settings">设置</a>
               </li>
               <li class="divider"></li>
               <li>
-                <a href="modal.lockme.html" data-toggle="ajaxModal"  class="specialFont">退出登录</a>
+                <a href="#" id="logout">退出登录</a>
               </li>
             </ul>
           </li>
@@ -142,6 +183,30 @@
                       </a>
                     </li>
                   </ul>
+                  <ul class="nav bg clearfix">
+                    <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                      我的
+                    </li>
+                    <li>
+                      <a href="download.html">
+                        <i class="icon-cloud-download"></i>
+                        <span class="font-bold">下载</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="enshrine.html">
+                        <i class="fa fa-heart-o"></i>
+                        <span class="font-bold">收藏</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="comment.html">
+                        <i class="fa fa-comment-o"></i>
+                        <span class="font-bold">评论</span>
+                      </a>
+                    </li>
+                    <li class="m-b hidden-nav-xs"></li>
+                  </ul>
                 </nav>
                 <!-- / nav -->
               </div>
@@ -157,8 +222,8 @@
               <aside class="col-sm-5 no-padder" id="sidebar">
                 <section class="vbox animated fadeInUp">
                   <section class="scrollable">
-                    <div class="m-t-n-xxs item pos-rlt">
-                      <div class="top text-right">
+                    <div class="m-t-n-xxs item pos-rlt" style="background-image:url(images/m43.jpg);width:710px;height:355px">
+                      <!-- <div class="top text-right">
                         <span class="musicbar animate bg-success bg-empty inline m-r-lg m-t" style="width:25px;height:30px">
                           <span class="bar1 a3 lter"></span>
                           <span class="bar2 a5 lt"></span>
@@ -167,12 +232,82 @@
                           <span class="bar5 a2 dker"></span>
                         </span>
                       </div>
-                      <div class="bottom gd bg-info wrapper-lg">
-                        <span class="pull-right text-sm">101,400 <br>粉丝</span>
-                        <span class="h2 font-thin">Soph Ashe</span>
-                      </div>
-                      <img class="img-full" src="images/m43.jpg" alt="...">
+                      <div class="content">
+                        <ul id="lrc_list">
+                          <li>点击开始播放……</li>
+                        </ul>
+                      </div> -->
+
+                      <textarea id="lrc_content" name="textfield" cols="70" rows="10" style="display:none;"> 
+                        [00:03.00]洋葱
+                        [00:06.00]演唱：平安
+                        [00:09.00]
+                        [00:11.38]如果你眼神能够为我片刻的降临
+                        [00:21.23]如果你能听到心碎的声音
+                        [00:28.88]盘底的洋葱像我永远是配角戏
+                        [00:35.74]偷偷的看着你偷偷的隐藏着自己
+                        [00:43.48]
+                        [00:44.90]如果你愿意一层一层
+                        [00:48.46]一层的剥开我的心
+                        [00:52.66]你会发现你会讶异
+                        [00:56.40]你是我最压抑最深处的秘密
+                        [01:00.26]如果你愿意一层一层
+                        [01:03.69]一层的剥开我的心
+                        [01:07.76]你会鼻酸你会流泪
+                        [01:11.60]只要你能听到我看到我的全心全意
+                        [01:18.30]
+                        [01:19.11]如果你愿意一层一层
+                        [01:22.57]一层的剥开我的心
+                        [01:26.66]你会发现你会讶异
+                        [01:30.41]你是我最压抑最深处的秘密
+                        [01:34.48]如果你愿意一层一层
+                        [01:37.58]一层的剥开我的心
+                        [01:41.51]你会鼻酸你会流泪
+                        [01:45.15]只要你能听到我看到我的全心全意
+                        [01:53.55]
+                        [01:55.65]你会鼻酸你会流泪
+                        [01:59.84]只要你能听到我看到我的全心全意
+                      </textarea>
+                      <div class="music_box">
+                     <!--  <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+                      <div id="jp_container_1" class="jp-audio">
+                        <div class="jp-type-single">
+                          <div class="jp-gui jp-interface">
+                            <ul class="jp-controls">
+                              <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                              <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                              <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+                              <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+                              <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+                              <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+                            </ul>
+                            <div class="jp-progress">
+                              <div class="jp-seek-bar">
+                                <div class="jp-play-bar"></div>
+                              </div>
+                            </div>
+                            <div class="jp-volume-bar">
+                              <div class="jp-volume-bar-value"></div>
+                            </div>
+                            <div class="jp-time-holder">
+                              <div class="jp-current-time"></div>
+                              <div class="jp-duration"></div>
+                              <ul class="jp-toggles">
+                                <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+                                <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+                              </ul>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div> -->
+                    <div class="content">
+                        <ul id="lrc_list">
+                          <li>点击开始播放……</li>
+                        </ul>
                     </div>
+                  </div>
+                </div>
                     <ul class="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto">
                       <li class="list-group-item">
                         <div class="pull-right m-l">
@@ -499,8 +634,8 @@
                           <div class="jp-controls">
                             <div><a class="jp-previous"><i class="icon-control-rewind i-lg"></i></a></div>
                             <div>
-                              <a class="jp-play"><i class="icon-control-play i-2x"></i></a>
-                              <a class="jp-pause hid"><i class="icon-control-pause i-2x"></i></a>
+                              <a class="jp-play" href="javascript:;" id="jp-play"><i class="icon-control-play i-2x"></i></a>
+                              <a class="jp-pause hid" href="javascript:;"><i class="icon-control-pause i-2x"></i></a>
                             </div>
                             <div><a class="jp-next"><i class="icon-control-forward i-lg"></i></a></div>
                             <div class="hide"><a class="jp-stop"><i class="fa fa-stop"></i></a></div>
@@ -544,7 +679,7 @@
                       </div>
                       <div class="jp-playlist dropup" id="playlist">
                         <ul class="dropdown-menu aside-xl dker">
-                          <!-- The method Playlist.displayPlaylist() uses this unordered list -->
+                          The method Playlist.displayPlaylist() uses this unordered list
                           <li class="list-group-item"></li>
                         </ul>
                       </div>
@@ -568,9 +703,17 @@
   <script src="js/app.js"></script>  
   <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="js/app.plugin.js"></script>
-  <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script>
+  <!-- <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script> -->
   <script type="text/javascript" src="js/jPlayer/add-on/jplayer.playlist.min.js"></script>
+
   <script type="text/javascript" src="js/jPlayer/demo.js"></script>
-<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+  <script type="text/javascript" src="js/logout.js"></script>
+  <script type="text/javascript" src="js/lrcPlayer/jquery.js"></script>
+  <script type="text/javascript" src="js/lrcPlayer/jquery.jplayer.js"></script>
+  <script type="text/javascript" src="js/lrc.js"></script>
+  <script type="text/javascript" src="js/lrcPlayer.js"></script>
+
+
+<!-- <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div> -->
 </body>
 </html>
