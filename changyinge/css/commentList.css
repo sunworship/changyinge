@@ -1,0 +1,40 @@
+*{
+	margin: 0px;
+	padding:0px;
+}
+#commentList{
+	width: 90%;
+	background-color: white;
+	margin:20px;
+}
+#commentList ul{
+	background-color:white;
+}
+#commentList ul li{
+	list-style: none;
+	padding:10px 0px;
+	border-radius: 
+	color:black;
+	border-bottom: 1px solid rgb(230,230,230);
+}
+.songInfo{
+	display: block;
+	padding: 5px;
+}
+.comment{
+	display: block;
+	padding: 10px 25px;
+}
+.song{
+	font-size: 18px;
+	padding: 10px 10px 10px 20px;
+}
+#commentList ul li:hover{
+	background-color:rgb(230,230,230);
+}
+.time{
+	font-size: 10px;
+	float:right;
+	padding-right: 30px;
+
+}
