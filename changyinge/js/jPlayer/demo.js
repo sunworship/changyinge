@@ -5,21 +5,21 @@ $(document).ready(function(){
     cssSelectorAncestor: "#jp_container_N"
   }, [
     {
-      title:"Busted Chump",
-      artist:"ADG3",
-      mp3:"http://flatfull.com/themes/assets/musics/adg3com_bustedchump.mp3",
+      title:"The Truth That You Leave",
+      artist:"Pianoboy",
+      mp3:"src/Pianoboy - The Truth That You Leave.mp3",
       poster: "images/m0.jpg"
     },
     {
-      title:"Chucked Knuckles",
-      artist:"3studios",
-      mp3:"http://flatfull.com/themes/assets/musics/adg3com_chuckedknuckles.mp3",
+      title:"盖亚",
+      artist:"林忆莲",
+      mp3:"src/林忆莲 - 盖亚.mp3",
       poster: "images/m0.jpg"
     },
     {
-      title:"Cloudless Days",
-      artist:"ADG3 Studios",
-      mp3:"http://flatfull.com/themes/assets/musics/adg3com_cloudlessdays.mp3",
+      title:"没离开过",
+      artist:"林志炫",
+      mp3:"src/林志炫 - 没离开过.mp3",
       poster: "images/m0.jpg"
     },
     {
@@ -49,7 +49,7 @@ $(document).ready(function(){
   ], {
     playlistOptions: {
       enableRemoveControls: true,
-      autoPlay: true
+      autoPlay: false
     },
     swfPath: "js/jPlayer",
     supplied: "webmv, ogv, m4v, oga, mp3",
@@ -57,6 +57,7 @@ $(document).ready(function(){
     keyEnabled: true,
     audioFullScreen: false
   });
+
   
   $(document).on($.jPlayer.event.pause, myPlaylist.cssSelector.jPlayer,  function(){
     $('.musicbar').removeClass('animate');
@@ -67,6 +68,7 @@ $(document).ready(function(){
   $(document).on($.jPlayer.event.play, myPlaylist.cssSelector.jPlayer,  function(){
     $('.musicbar').addClass('animate');
   });
+
 
   $(document).on('click', '.jp-play-me', function(e){
     e && e.preventDefault();
@@ -85,6 +87,24 @@ $(document).ready(function(){
       myPlaylist.play(i);
     }
     
+  });
+
+  $(document).on('click','.jp-play-the-song',function(e){
+    e&&e.preventDefault();
+    var $this=$(e.target);
+    if (!$this.is('a')) $this = $this.closest('a');
+
+    $('.jp-play-the-song').not($this).removeClass('active');
+    $('.jp-play-the-song').parent('div').not($this.parent('div')).removeClass('active');
+
+    $this.toggleClass('active');
+    $this.parent('div').toggleClass('active');
+    if( !$this.hasClass('active') ){
+      myPlaylist.pause();
+    }else{
+      var i = $this.index();
+      myPlaylist.play(i);
+    }
   });
 
 
@@ -114,3 +134,7 @@ $(document).ready(function(){
   });
 
 });
+
+
+
+//修改部分
