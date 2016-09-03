@@ -90,8 +90,10 @@ $(document).ready(function(){
   });
 
   $(document).on('click','.jp-play-the-song',function(e){
+    var i=$('.jp-play-the-song').index(this);
     e&&e.preventDefault();
     var $this=$(e.target);
+
     if (!$this.is('a')) $this = $this.closest('a');
 
     $('.jp-play-the-song').not($this).removeClass('active');
@@ -102,11 +104,10 @@ $(document).ready(function(){
     if( !$this.hasClass('active') ){
       myPlaylist.pause();
     }else{
-      var i = $this.index();
+      
       myPlaylist.play(i);
     }
   });
-
 
 
   // video
