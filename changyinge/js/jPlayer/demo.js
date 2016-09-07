@@ -1,141 +1,88 @@
 $(document).ready(function(){
-
-  var myPlaylist = new jPlayerPlaylist({
-    jPlayer: "#jplayer_N",
-    cssSelectorAncestor: "#jp_container_N"
-  }, [
-    {
-      title:"The Truth That You Leave",
-      artist:"Pianoboy",
-      mp3:"src/Pianoboy - The Truth That You Leave.mp3",
-      poster: "images/m0.jpg"
-    },
-    {
-      title:"盖亚",
-      artist:"林忆莲",
-      mp3:"src/林忆莲 - 盖亚.mp3",
-      poster: "images/m0.jpg"
-    },
-    {
-      title:"没离开过",
-      artist:"林志炫",
-      mp3:"src/林志炫 - 没离开过.mp3",
-      poster: "images/m0.jpg"
-    },
-    {
-      title:"Core Issues",
-      artist:"Studios",
-      mp3:"http://flatfull.com/themes/assets/musics/adg3com_coreissues.mp3",
-      poster: "images/m0.jpg"
-    },
-    {
-      title:"Cryptic Psyche",
-      artist:"ADG3",
-      mp3:"http://flatfull.com/themes/assets/musics/adg3com_crypticpsyche.mp3",
-      poster: "images/m0.jpg"
-    },
-    {
-      title:"Electro Freak",
-      artist:"Studios",
-      mp3:"http://flatfull.com/themes/assets/musics/adg3com_electrofreak.mp3",
-      poster: "images/m0.jpg"
-    },
-    {
-      title:"Freeform",
-      artist:"ADG",
-      mp3:"http://flatfull.com/themes/assets/musics/adg3com_freeform.mp3",
-      poster: "images/m0.jpg"
-    }
-  ], {
-    playlistOptions: {
-      enableRemoveControls: true,
-      autoPlay: false
-    },
-    swfPath: "js/jPlayer",
-    supplied: "webmv, ogv, m4v, oga, mp3",
-    smoothPlayBar: true,
-    keyEnabled: true,
-    audioFullScreen: false
-  });
-
+  var desJson=[];
+  var imgItem=document.getElementsByClassName('r r-2x img-full');
+  var songItem=document.getElementsByClassName('songName');
+  var singgerItem=document.getElementsByClassName('text-ellipsis text-xs text-muted');
   
-  $(document).on($.jPlayer.event.pause, myPlaylist.cssSelector.jPlayer,  function(){
-    $('.musicbar').removeClass('animate');
-    $('.jp-play-me').removeClass('active');
-    $('.jp-play-me').parent('li').removeClass('active');
-  });
+  $.ajax({
+    type:"GET",
+    url:"http://123.206.69.201:8080/song/selectbyhot/0/12",
+    dataType:"json",
+    success:function(data){
+        for(var i=0;i<12;i++){
+                  var obj = {};
+                  obj.title = data[i].songName;
+                  obj.artist=data[i].singgerName;
+                  obj.poster=data[i].albumpicBig;
+                  obj.m4a=data[i].m4a;
+                  desJson[i]=obj;
+                  imgItem[i].setAttribute('src',obj.poster);
+                  songItem[i].innerHTML=obj.title;
+                  singgerItem[i].innerHTML=obj.artist;
+        }
+       
+        var myPlaylist = new jPlayerPlaylist({jPlayer: "#jplayer_N",
+                          cssSelectorAncestor: "#jp_container_N"},desJson,
+                          {
+                            playlistOptions: {
+                              enableRemoveControls: true,
+                              autoPlay: false
+                            },
+                            swfPath: "js/jPlayer",
+                            supplied: "webmv, ogv, m4v, oga, mp3, m4a",
+                            smoothPlayBar: true,
+                            keyEnabled: true,
+                            audioFullScreen: false
+                          });
 
-  $(document).on($.jPlayer.event.play, myPlaylist.cssSelector.jPlayer,  function(){
-    $('.musicbar').addClass('animate');
-  });
+        $(document).on($.jPlayer.event.pause, myPlaylist.cssSelector.jPlayer,  function(){
+          $('.musicbar').removeClass('animate');
+          $('.jp-play-me').removeClass('active');
+          $('.jp-play-me').parent('li').removeClass('active');
+        });
 
+        $(document).on($.jPlayer.event.play, myPlaylist.cssSelector.jPlayer,  function(){
+          $('.musicbar').addClass('animate');
+        });
 
-  $(document).on('click', '.jp-play-me', function(e){
-    e && e.preventDefault();
-    var $this = $(e.target);
-    if (!$this.is('a')) $this = $this.closest('a');
+        $(document).on('click', '.jp-play-me', function(e){
+          e && e.preventDefault();
+          var $this = $(e.target);
+          if (!$this.is('a')) $this = $this.closest('a');
 
-    $('.jp-play-me').not($this).removeClass('active');
-    $('.jp-play-me').parent('li').not($this.parent('li')).removeClass('active');
+          $('.jp-play-me').not($this).removeClass('active');
+          $('.jp-play-me').parent('li').not($this.parent('li')).removeClass('active');
 
-    $this.toggleClass('active');
-    $this.parent('li').toggleClass('active');
-    if( !$this.hasClass('active') ){
-      myPlaylist.pause();
-    }else{
-      var i = Math.floor(Math.random() * (1 + 7 - 1));
-      myPlaylist.play(i);
-    }
-    
-  });
+          $this.toggleClass('active');
+          $this.parent('li').toggleClass('active');
+          if( !$this.hasClass('active') ){
+            myPlaylist.pause();
+          }else{
+            var i = Math.floor(Math.random() * (1 + 7 - 1));
+            myPlaylist.play(i);
+          }         
+        });
 
-  $(document).on('click','.jp-play-the-song',function(e){
-    var i=$('.jp-play-the-song').index(this);
-    e&&e.preventDefault();
-    var $this=$(e.target);
+        $(document).on('click','.jp-play-the-song',function(e){
+          var i=$('.jp-play-the-song').index(this);
+          e&&e.preventDefault();
+          var $this=$(e.target);
+          if (!$this.is('a')) $this = $this.closest('a');
 
-    if (!$this.is('a')) $this = $this.closest('a');
+          $('.jp-play-the-song').not($this).removeClass('active');
+          $('.jp-play-the-song').parent('div').not($this.parent('div')).removeClass('active');
 
-    $('.jp-play-the-song').not($this).removeClass('active');
-    $('.jp-play-the-song').parent('div').not($this.parent('div')).removeClass('active');
-
-    $this.toggleClass('active');
-    $this.parent('div').toggleClass('active');
-    if( !$this.hasClass('active') ){
-      myPlaylist.pause();
-    }else{
-      
-      myPlaylist.play(i);
-    }
-  });
-
-
-  // video
-
-  $("#jplayer_1").jPlayer({
-    ready: function () {
-      $(this).jPlayer("setMedia", {
-        title: "Big Buck Bunny",
-        m4v: "http://flatfull.com/themes/assets/video/big_buck_bunny_trailer.m4v",
-        ogv: "http://flatfull.com/themes/assets/video/big_buck_bunny_trailer.ogv",
-        webmv: "http://flatfull.com/themes/assets/video/big_buck_bunny_trailer.webm",
-        poster: "images/m41.jpg"
-      });
-    },
-    swfPath: "js",
-    supplied: "webmv, ogv, m4v",
-    size: {
-      width: "100%",
-      height: "auto",
-      cssClass: "jp-video-360p"
-    },
-    globalVolume: true,
-    smoothPlayBar: true,
-    keyEnabled: true
-  });
-
+          $this.toggleClass('active');
+          $this.parent('div').toggleClass('active');
+          if( !$this.hasClass('active') ){
+            myPlaylist.pause();
+          }else{          
+            myPlaylist.play(i);
+          }
+          });
+          },
+          error:function(jqXHR){
+            alert("发生错误:"+jqXHR.status);
+          }
+        });
 });
-
-
-
-//修改部分
