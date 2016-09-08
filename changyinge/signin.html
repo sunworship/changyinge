@@ -26,14 +26,14 @@
         <header class="wrapper text-center">
           <strong>登录帐户</strong>
         </header>
-        <form action="index.html">
+        <form id="signinForm">
           <div class="form-group">
-            <input type="email" placeholder="邮箱" class="form-control rounded input-lg text-center no-border">
+            <input type="text" placeholder="用户名" class="form-control rounded input-lg text-center no-border" required="required" id="email">
           </div>
           <div class="form-group">
-             <input type="password" placeholder="密码" class="form-control rounded input-lg text-center no-border">
+             <input type="password" placeholder="密码" class="form-control rounded input-lg text-center no-border" required="required" id="pwd">
           </div>
-          <button type="submit" class="btn btn-lg btn-warning lt b-white b-2x btn-block btn-rounded"><i class="icon-arrow-right pull-right"></i><span class="m-r-n-lg">登录</span></button>
+          <button type="submit" class="btn btn-lg btn-warning lt b-white b-2x btn-block btn-rounded" id="submitBtn"><i class="icon-arrow-right pull-right"></i><span class="m-r-n-lg">登录</span></button>
           <div class="text-center m-t m-b"><a href="#"><small>忘记密码?</small></a></div>
           <div class="line line-dashed"></div>
           <p class="text-muted text-center"><small>还没有帐户?</small></p>
@@ -52,8 +52,7 @@
     <script src="js/app.plugin.js"></script>
   <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="js/jPlayer/add-on/jplayer.playlist.min.js"></script>
-  <script type="text/javascript" src="js/jPlayer/demo.js"></script>
-  <script type="text/javascript" src="js/logout.js"></script>
-<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+  <script type="text/javascript" src="js/signin.js"></script>
+
 </body>
 </html>

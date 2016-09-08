@@ -26,12 +26,12 @@
         <header class="wrapper text-center">
           <strong>注册帐户</strong>
         </header>
-        <form action="index.html" id="signupForm" onsubmit="return checkPass()";>
+        <form id="signupForm">
           <div class="form-group">
-            <input placeholder="昵称[6-18位]" class="form-control rounded input-lg text-center no-border" required pattern="[^\s]\w{5,17}$">
+            <input placeholder="昵称[6-18位]" class="form-control rounded input-lg text-center no-border" required pattern="[^\s]\w{5,17}$" id="userName">
           </div>
           <div class="form-group">
-            <input type="email" placeholder="邮箱" class="form-control rounded input-lg text-center no-border" required>
+            <input type="email" placeholder="邮箱" class="form-control rounded input-lg text-center no-border" required id="userId">
           </div>
           <div class="form-group">
              <input type="password" id="password" placeholder="密码[6-18位]" class="form-control rounded input-lg text-center no-border" required pattern="[^\s]\w{5,17}$">
@@ -45,7 +45,7 @@
               <input type="checkbox" checked=""><i></i> 同意 <a href="#">协议条款</a>
             </label>
           </div>
-          <button type="submit" class="btn btn-lg btn-warning lt b-white b-2x btn-block btn-rounded"><i class="icon-arrow-right pull-right"></i><span class="m-r-n-lg">注册</span></button>
+          <button type="submit" class="btn btn-lg btn-warning lt b-white b-2x btn-block btn-rounded" id="signupBtn"><i class="icon-arrow-right pull-right"></i><span class="m-r-n-lg">注册</span></button>
           <div class="line line-dashed"></div>
           <p class="text-muted text-center"><small>已有一个帐户?</small></p>
           <a href="signin.html" class="btn btn-lg btn-info btn-block btn-rounded">登录</a>
@@ -63,9 +63,8 @@
     <script src="js/app.plugin.js"></script>
   <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script>
   <script type="text/javascript" src="js/jPlayer/add-on/jplayer.playlist.min.js"></script>
-  <script type="text/javascript" src="js/jPlayer/demo.js"></script>
-  <script type="text/javascript" src="js/logout.js"></script>
-  <script type="text/javascript" src="js/validation.js"></script>
-<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+
+  <script type="text/javascript" src="js/signup.js"></script>
+
 </body>
 </html>
