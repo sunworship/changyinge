@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/font.css" type="text/css" />
   <link rel="stylesheet" href="css/app.css" type="text/css" />  
   <link rel="stylesheet" type="text/css" href="css/commentList.css">
+  <link rel="stylesheet" type="text/css" href="css/resultList.css">
     <!--[if lt IE 9]>
     <script src="js/ie/html5shiv.js"></script>
     <script src="js/ie/respond.min.js"></script>
@@ -42,16 +43,16 @@
           </a>
         </li>
       </ul>
-      <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
+      <div class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
         <div class="form-group">
           <div class="input-group">
-            <span class="input-group-btn">
+            <span class="input-group-btn" id="searchBtn">
               <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
             </span>
             <input type="text" class="form-control input-sm no-border rounded" placeholder="搜索歌名，歌手...">
           </div>
         </div>
-      </form>
+        </div>
       <div class="navbar-right ">
         <ul class="nav navbar-nav m-n hidden-xs nav-user user">
           
@@ -157,12 +158,13 @@
           <section class="vbox" id="bjax-el">
             <section class="scrollable padder-lg">
               <h2 class="font-thin m-b">我的评论</h2>
-              <div id="commentList">
+              <div id="
+              ">
                 <ul>
                   <li>
                     <a href="#">
                       <div class="songInfo">
-                        <span class="song">没离开过</span><span class="singer"><b>By</b>林志炫</span>
+                        <span class="song">没离开过</span><span class="singger"><b>By</b>林志炫</span>
                         <span class="time">2016/9/1 20:38</span>
                       </div>
                         <span class="comment"><b>我的评论:</b>我是歌手专辑收录...
@@ -172,7 +174,7 @@
                   <li>
                     <a href="#">
                       <div class="songInfo">
-                        <span class="song">没离开过</span><span class="singer"><b>By</b>林志炫</span>
+                        <span class="song">没离开过</span><span class="singger"><b>By</b>林志炫</span>
                         <span class="time">2016/9/1 20:38</span>
                       </div>
                         <span class="comment"><b>我的评论:</b>我是歌手专辑收录...
@@ -182,6 +184,215 @@
                 </ul>
               </div>
             </section>
+          </section>
+          <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+        </section>
+        <section id="searchResult" style="display:none;">
+          <section class="vbox" id="bjax-el">
+            <section class="scrollable wrapper-lg">
+              <div id="resultList">
+                
+              </div>
+            </section>
+          </section>
+          <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+        </section>
+        <section id="content-detail" style="display:none;">
+          <section class="vbox" id="bjax-el">
+            <section class="scrollable wrapper-lg">
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="panel wrapper-lg">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <img src="images/m10.jpg" class="img-full m-b">
+                      </div>
+                      <div class="col-sm-7">
+                        <h2 class="m-t-none text-black"><span class="songDetailName">歌曲名</span></h2>
+                        <div class="clearfix m-b-lg">
+                          <div class="clear">
+                            <a href="#" class="text-info"><span class="singgerDetailName">歌手</span></a>
+                            
+                          </div>
+                        </div>
+                        <div class="m-b-lg">
+                          <a href="#" class="btn btn-default"><span id="commentCount">3</span>条评论</a>
+                          <a href="#" class="btn btn-default"><span id="downloadCount">0</span>次下载</a>
+                          <a href="#" class="btn btn-default"><span id="collectionsCount">0</span>次收藏</a>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="list-group list-group-lg">
+                      <li class="list-group-item">
+                        <div class="pull-right m-l">
+                          <a href="#" class="m-r-sm"><i class="icon-cloud-download"></i></a>
+                         
+                          <a href="#" class="pull-right active" data-toggle="class">
+                                <i class="fa fa-heart-o text-active"></i>
+                                <i class="fa fa-heart text text-danger"></i>
+                          </a>
+                        </div>
+                        <a href="#" class="jp-play-the-song m-r-sm pull-left">
+                          
+                          <i class="icon-control-play text"></i>
+                          <i class="icon-control-pause text-active"></i>
+                          
+                        </a>
+                        <div class="clear text-ellipsis">
+                          <span class="songDetailName">歌曲名</span>
+                          <span class="text-muted"> -- <span id="songTime">00:00</span></span>
+                        </div>
+                      </li>
+                      
+                    </ul>
+                    <h4 class="m-t-lg m-b"><span id="commentBigCount">3</span>条评论</h4>
+                    <section class="comment-list block">
+                      <article id="comment-id-1" class="comment-item">
+                        <a class="pull-left thumb-sm">
+                          <img src="images/a0.png" class="img-circle">
+                        </a>
+                        <section class="comment-body m-b">
+                          <header>
+                            <a href="#"><strong>John smith</strong></a>
+                            <label class="label bg-info m-l-xs">作者</label> 
+                            <span class="text-muted text-xs block m-t-xs">
+                              24分钟以前
+                            </span>
+                          </header>
+                          <div class="m-t-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat. Vestibulum.</div>
+                        </section>
+                      </article>
+                      <!-- .comment-reply -->
+                      <!-- <article id="comment-id-2" class="comment-item comment-reply">
+                        <a class="pull-left thumb-sm">
+                          <img src="images/a1.png" class="img-circle">
+                        </a>
+                        <section class="comment-body m-b">
+                          <header>
+                            <a href="#"><strong>John smith</strong></a>
+                            <label class="label bg-dark m-l-xs">用户</label> 
+                            <span class="text-muted text-xs block m-t-xs">
+                              26分钟以前
+                            </span>
+                          </header>
+                          <div class="m-t-sm">Lorem ipsum dolor sit amet, consecteter adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</div>
+                        </section>
+                      </article> -->
+                      <!-- / .comment-reply -->
+                      <!-- <article id="comment-id-2" class="comment-item">
+                        <a class="pull-left thumb-sm">
+                          <img src="images/a2.png" class="img-circle">
+                        </a>
+                        <section class="comment-body m-b">
+                          <header>
+                            <a href="#"><strong>John smith</strong></a>
+                            <label class="label bg-dark m-l-xs">用户</label> 
+                            <span class="text-muted text-xs block m-t-xs">
+                              26分钟以前
+                            </span>
+                          </header>
+                          <blockquote class="m-t">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                            <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                          </blockquote>
+                          <div class="m-t-sm">Lorem ipsum dolor sit amet, consecteter adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</div>
+                        </section>
+                      </article> -->
+                    </section>
+                    <h4 class="m-t-lg m-b">发布一条评论</h4>
+                    <form>
+                      <div class="form-group pull-in clearfix">
+                        <div class="col-sm-6">
+                          <label>你的姓名</label>
+                          <input type="text" class="form-control" placeholder="姓名">
+                        </div>
+                        <div class="col-sm-6">
+                          <label >邮箱</label>
+                          <input type="email" class="form-control" placeholder="输入邮箱">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>评论</label>
+                        <textarea class="form-control" rows="5" placeholder="输入你的评论"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-success">提交评论</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                
+              </div>
+            </section>
+            <footer class="footer bg-info dker">
+              <div id="jp_container_N">
+                    <div class="jp-type-playlist">
+                      <div id="jplayer_N" class="jp-jplayer hide"></div>
+                      <div class="jp-gui">
+                        <div class="jp-video-play hide">
+                          <a class="jp-video-play-icon">play</a>
+                        </div>
+                        <div class="jp-interface">
+                          <div class="jp-controls">
+                            <div><a class="jp-previous"><i class="icon-control-rewind i-lg"></i></a></div>
+                            <div>
+                              <a class="jp-play"><i class="icon-control-play i-2x"></i></a>
+                              <a class="jp-pause hid"><i class="icon-control-pause i-2x"></i></a>
+                            </div>
+                            <div><a class="jp-next"><i class="icon-control-forward i-lg"></i></a></div>
+                            <div class="hide"><a class="jp-stop"><i class="fa fa-stop"></i></a></div>
+                            <div><a class="" data-toggle="dropdown" data-target="#playlist"><i class="icon-list"></i></a></div>
+                            <div class="jp-progress hidden-xs">
+                              <div class="jp-seek-bar dk">
+                                <div class="jp-play-bar bg-info">
+                                </div>
+                                <div class="jp-title text-lt">
+                                  <ul>
+                                    <li></li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="hidden-xs hidden-sm jp-current-time text-xs text-muted"></div>
+                            <div class="hidden-xs hidden-sm jp-duration text-xs text-muted"></div>
+                            <div class="hidden-xs hidden-sm">
+                              <a class="jp-mute" title="音量"><i class="icon-volume-2"></i></a>
+                              <a class="jp-unmute hid" title="unmute"><i class="icon-volume-off"></i></a>
+                            </div>
+                            <div class="hidden-xs hidden-sm jp-volume">
+                              <div class="jp-volume-bar dk">
+                                <div class="jp-volume-bar-value lter"></div>
+                              </div>
+                            </div>
+                            <div>
+                              <a class="jp-shuffle" title="随机播放"><i class="icon-shuffle text-muted"></i></a>
+                              <a class="jp-shuffle-off hid" title="关闭随机播放"><i class="icon-shuffle text-lt"></i></a>
+                            </div>
+                            <div>
+                              <a class="jp-repeat" title="重复播放"><i class="icon-loop text-muted"></i></a>
+                              <a class="jp-repeat-off hid" title="关闭重复播放"><i class="icon-loop text-lt"></i></a>
+                            </div>
+
+                            <div class="hide">
+                              <a class="jp-full-screen" title="full screen"><i class="fa fa-expand"></i></a>
+                              <a class="jp-restore-screen" title="restore screen"><i class="fa fa-compress text-lt"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="jp-playlist dropup" id="playlist">
+                        <ul class="dropdown-menu aside-xl dker">
+                          <!-- The method Playlist.displayPlaylist() uses this unordered list -->
+                          <li class="list-group-item"></li>
+                        </ul>
+                      </div>
+                      <div class="jp-no-solution hide">
+                        <span>Update Required</span>
+                        To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                      </div>
+                    </div>
+                  </div>
+            </footer>
           </section>
           <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
         </section>
@@ -199,6 +410,6 @@
   <script type="text/javascript" src="js/jPlayer/add-on/jplayer.playlist.min.js"></script>
   <script type="text/javascript" src="js/jPlayer/demo.js"></script>
   <script type="text/javascript" src="js/logout.js"></script>
-
+  <script type="text/javascript" src="js/searchsong.js"></script>
 </body>
 </html>
